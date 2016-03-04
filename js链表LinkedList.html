@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	window.onload = function(){
+		function linkedList() {
+			var head = null;
+			var length = 0;
+			var Node = function(element) {
+				this.element = element;
+				this.next = null;
+			};
+
+			this.append = function(element) {
+				var node = new Node(element),
+						current = head;
+				if(head == null) {
+					head = node;
+				}
+				else {
+					current = head;
+					while(current.next) {
+						current = current.next;
+					}
+					current.next = node;
+				}
+				length++;
+			};
+			this.toString = function() {
+				var current = head,
+						string = '';
+				while(current) {
+					string += current.element + ' ';
+					current = current.next;
+				}
+
+				return string;
+			};
+			this.removeAt = function(position) {
+				if(position > -1 && position < length) {
+					var current = head,
+							previous,
+							index = 0;
+					if(position === 0) {
+						head = current.next;
+					}
+					else {
+						while(index++ < position) {
+							previous = current;
+							current = current.next
+						}
+						previous.next = current.next;
+					}
+					length--;
+					return current.element;
+				}
+				else {
+					return null;
+				}
+			};
+			this.insert = function(position, element) {
+				if(position > -1 && position < length) {
+					var node = new Node(element),
+							current = head,
+							previous,
+							index = 0;
+					if(position === 0) {
+						node.next = current;
+						head = node;
+					}
+					else {
+						while(index++ < position) {
+							previous = current;
+							current = current.next;
+						}
+						node.next = current;
+						previous.next = node;
+					}
+					length++;
+					return true;
+				}
+				else {
+					return false;
+				}
+			};
+			this.reverse = function() {  //反转链表
+				var prev = head;
+				var current = head;
+				if(head.next === null) {
+					return head;
+				}
+				while (current.next) {
+					var next = current.next;
+					current.next = next.next;
+					next.next = prev;
+					prev = next;
+				}
+				head = prev;
+			}
+		}
+
+
+		var list = new linkedList();
+		list.append(11);
+		list.append(35);
+		list.append(33);
+		list.append(44);
+		list.append(55);
+		list.append(66);
+
+		console.log(list.toString());
+		list.removeAt(1);
+		list.insert(1,109);
+		console.log(list.toString());
+		list.reverse();
+		console.log(list.toString());
+	}
+</script>
+</body>
+</html>
