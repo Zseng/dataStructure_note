@@ -16,11 +16,9 @@
 				this.next = null;
 			};
 
-			this.append = function(element) {
 			this.append = function(element) {  //链表插入元素
 				var node = new Node(element),
 						current = head;
-				if(head == null) {
 				if(head == null) {  //链表第一个元素
 					head = node;
 				}
@@ -33,7 +31,6 @@
 				}
 				length++;
 			};
-			this.toString = function() {
 			this.toString = function() {  //遍历链表返回链表字符串
 				var current = head,
 						string = '';
@@ -44,7 +41,6 @@
 
 				return string;
 			};
-			this.removeAt = function(position) {
 			this.removeAt = function(position) {  //移除链表元素
 				if(position > -1 && position < length) {
 					var current = head,
@@ -53,7 +49,6 @@
 					if(position === 0) {
 						head = current.next;
 					}
-					else {
 					else {  //遍历链表 找到位置 改变前后指向移除元素
 						while(index++ < position) {
 							previous = current;
@@ -68,7 +63,6 @@
 					return null;
 				}
 			};
-			this.insert = function(position, element) {
 			this.insert = function(position, element) {  //插入链表元素
 				if(position > -1 && position < length) {
 					var node = new Node(element),
@@ -79,7 +73,6 @@
 						node.next = current;
 						head = node;
 					}
-					else {
 					else {  //遍历到位置  插入元素
 						while(index++ < position) {
 							previous = current;
@@ -120,14 +113,11 @@
 		list.append(55);
 		list.append(66);
 
-		console.log(list.toString());
 		console.log(list.toString());  //11 35 33 44 55 66
 		list.removeAt(1);
 		list.insert(1,109);
-		console.log(list.toString());
 		console.log(list.toString());  //11 109 33 44 55 66
 		list.reverse();
-		console.log(list.toString());
 		console.log(list.toString());  //66 55 44 33 109 11
 	}
 </script>
